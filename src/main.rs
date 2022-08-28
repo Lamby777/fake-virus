@@ -2,6 +2,8 @@ use native_dialog::{MessageDialog, MessageType};
 use std::time::Duration;
 use std::thread::sleep;
 
+const SPAMDELAY: u64 = 200;
+
 #[tokio::main]
 async fn main() {
 	let mut iteration = 1;
@@ -9,7 +11,7 @@ async fn main() {
 	loop {
 		let title = format!("Process #{}", iteration);
 		tokio::spawn(open_dialog(title, "spoon :D"));
-		wait(2000);
+		wait(SPAMDELAY);
 		iteration += 1;
 	}
 }
