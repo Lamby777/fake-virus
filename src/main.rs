@@ -9,8 +9,8 @@ async fn main() {
 	let mut iteration = 1;
 
 	loop {
-		let title = format!("Process #{}", iteration);
-		tokio::spawn(open_dialog(title, "spoon :D"));
+		let formatted = format!("You have seen this text {} times.", iteration);
+		tokio::spawn(open_dialog("Clown!", formatted));
 		wait(SPAMDELAY);
 		iteration += 1;
 	}
