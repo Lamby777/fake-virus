@@ -7,5 +7,3 @@ edition = "2021"
 
 [dependencies]
 native-dialog = "0.6.3"
-futures = "0.3"
-tokio = { version = "0.2.4", features = ["full"] }
