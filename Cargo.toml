@@ -8,4 +8,6 @@ edition = "2021"
 [dependencies]
 native-dialog = "0.6.3"
 dirs = "4.0.0"
-whoami = "1.2.1"
+machine-uid = "0.2.0"
+sha256 = "1.0.3"
+#whoami = "1.2.1"
