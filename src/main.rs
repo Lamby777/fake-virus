@@ -6,14 +6,19 @@ use std::fs::File;
 use std::io::prelude::*;
 use std::path::Path;
 
-const SPAMDELAY: u64 = 50;
+const SPAMDELAY: u64 = 100;
 
 fn main() {
+	let home_folder: &str = &format!("{}", dirs::home_dir().unwrap().display())[..];
+
 	// Make file
-	let flocstr = format!("{}/Desktop/amogus.gif", (dirs::home_dir().unwrap().display()));
-	let floc = Path::new(&flocstr[..]);
-	let mut file = File::create(floc).expect("Failed to create amogus file");
-	file.write_all(include_bytes!("amogus.gif")).expect("Couldn't write amogus to file");
+	let mut susgif = make_file(format!("{}/Desktop/amogus.gif", home_folder));
+	susgif.write_all(include_bytes!("amogus.gif")).expect("Couldn't write to file");
+
+	let mut yourfile = make_file(format!("{}/Desktop/yourfile.txt", home_folder));
+	let fcbuffer = format!("Your secret code is: '{} is a gamer 123123'", whoami::devicename());
+	let fcontent = fcbuffer.as_bytes();
+	yourfile.write_all(fcontent).expect("Couldn't write to file");
 
 	// Infect computer
 	let mut iteration = 1;
@@ -27,6 +32,13 @@ fn main() {
 		wait(SPAMDELAY);
 		iteration += 1;
 	}
+}
+
+fn make_file(loc: String) -> File {
+	let floc = Path::new(&loc[..]);
+	let file = File::create(floc).expect("Failed to create file");
+
+	return file;
 }
 
 fn wait(time: u64) -> () {
